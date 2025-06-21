@@ -1,7 +1,7 @@
 import { z } from 'zod'
 
 export const InputStringTestSchema = z.object({
-  string: z.string({ required_error: 'String is required' }),
+  string: z.string(),
   string_optional: z.string().optional(),
   string_nullable: z.string().nullable(),
   string_nullish: z.string().nullish(),
@@ -24,21 +24,43 @@ export const InputNumberTestSchema = z.object({
 })
 export type InputNumberTest = z.infer<typeof InputNumberTestSchema>
 
+export const FrameworkEnum = z.enum(['react', 'vue', 'svelte', 'angular'])
+export type FrameworkEnum = z.infer<typeof FrameworkEnum>
+
 export const InputArrayTestSchema = z.object({
-  array: z.array(z.string()),
-  array_optional: z.array(z.string()).optional(),
-  array_nullable: z.array(z.string()).nullable(),
-  array_nullish: z.array(z.string()).nullish(),
-  array_nonempty: z.array(z.string()).nonempty(),
-  array_nonempty_optional: z.array(z.string()).nonempty().optional(),
-  array_nonempty_nullable: z.array(z.string()).nonempty().nullable(),
-  array_nonempty_nullish: z.array(z.string()).nonempty().nullish()
+  array: z.array(FrameworkEnum, { required_error: 'Array must contain at least 1 element(s)' }).nonempty(),
+  array_optional: z.array(FrameworkEnum).optional(),
+  array_nullable: z.array(FrameworkEnum).nullable(),
+  array_nullish: z.array(FrameworkEnum).nullish(),
+  array_nonempty: z.array(FrameworkEnum).nonempty(),
+  array_nonempty_optional: z.array(FrameworkEnum).nonempty().optional(),
+  array_nonempty_nullable: z.array(FrameworkEnum).nonempty().nullable(),
+  array_nonempty_nullish: z.array(FrameworkEnum).nonempty().nullish()
 })
 export type InputArrayTest = z.infer<typeof InputArrayTestSchema>
+
+export const InputBooleanTestSchema = z.object({
+  boolean: z.boolean(),
+  boolean_optional: z.boolean().optional(),
+  boolean_nullable: z.boolean().nullable(),
+  boolean_nullish: z.boolean().nullish()
+})
+export type InputBooleanTest = z.infer<typeof InputBooleanTestSchema>
+
+export const InputDatetimeTestSchema = z.object({
+  datetime: z.date(),
+  datetime_optional: z.date().optional(),
+  datetime_nullable: z.date().nullable(),
+  datetime_nullish: z.date().nullish()
+})
 
 export const InputTestSchema = z.object({
   string: InputStringTestSchema,
   number: InputNumberTestSchema,
-  array: InputArrayTestSchema
+  array: InputArrayTestSchema,
+  checkbox: InputArrayTestSchema,
+  select: InputStringTestSchema,
+  boolean: InputBooleanTestSchema,
+  datetime: InputDatetimeTestSchema
 })
 export type InputTest = z.infer<typeof InputTestSchema>

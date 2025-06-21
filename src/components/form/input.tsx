@@ -9,6 +9,7 @@ type InputProps<T extends FieldValues> = React.ComponentProps<'input'> & {
   name: Path<T>
   control: Control<T>
   error?: FieldError
+  defaultValue?: string | null
 }
 
 function FormInput<T extends FieldValues>({
@@ -22,6 +23,7 @@ function FormInput<T extends FieldValues>({
   error,
   required,
   description,
+  defaultValue,
   ...props
 }: InputProps<T>) {
   return (
@@ -32,7 +34,17 @@ function FormInput<T extends FieldValues>({
         <FormItem>
           <FormLabel>{label}</FormLabel>
           <FormControl>
-            <Input required={required} disabled={disabled} placeholder={placeholder} {...field} {...props} />
+            <Input
+              required={required}
+              disabled={disabled}
+              placeholder={placeholder}
+              {...field}
+              {...props}
+              onChange={(e) => {
+                const value = e.target.value
+                field.onChange(value === '' ? defaultValue : value)
+              }}
+            />
           </FormControl>
           <FormDescription>{description}</FormDescription>
           <FormMessage />
