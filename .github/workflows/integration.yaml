@@ -36,7 +36,7 @@ jobs:
           bun-version: latest
       - name: Check
         run: |
-          bunx @biomejs/biome@latest check src
+          bunx @biomejs/biome@2.0.0 check src
   test:
     name: Test
     runs-on: ubuntu-24.04
