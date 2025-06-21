@@ -24,6 +24,7 @@ function FormCheckbox<T extends FieldValues>({
   required,
   description,
   options,
+  // biome-ignore lint/correctness/noUnusedFunctionParameters: ignore
   ...props
 }: CheckboxProps<T>) {
   return (

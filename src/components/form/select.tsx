@@ -26,6 +26,7 @@ function FormSelect<T extends FieldValues>({
   placeholder,
   description,
   options,
+  // biome-ignore lint/correctness/noUnusedFunctionParameters: ignore
   ...props
 }: SelectProps<T>) {
   return (

@@ -23,6 +23,7 @@ function FormSwitch<T extends FieldValues>({
   required,
   description,
   className,
+  // biome-ignore lint/correctness/noUnusedFunctionParameters: ignore
   ...props
 }: SwitchProps<T>) {
   return (

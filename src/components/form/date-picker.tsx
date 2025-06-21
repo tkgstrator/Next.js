@@ -33,6 +33,7 @@ function FormDatePicker<T extends FieldValues>({
   required,
   description,
   // options,
+  // biome-ignore lint/correctness/noUnusedFunctionParameters: ignore
   ...props
 }: DatePickerProps<T>) {
   return (
