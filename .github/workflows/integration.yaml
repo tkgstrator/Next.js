@@ -72,7 +72,7 @@ jobs:
           restore-keys: |
             bun-${{ runner.os }}-
       - name: Install
-        run: bun install --frozen-lockfile --ignore-scripts
+        run: bun install --ignore-scripts
       - name: Build
         run: |
           bun run build
